@@ -9,7 +9,7 @@ class LoginView(View):
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
-            redirect('/login')
+            redirect('/')
         else:
             form = AuthenticationForm()
             context = {'form': form}
@@ -25,3 +25,29 @@ class LoginView(View):
                 login(request, user)
                 return redirect('/')
         return render(request, 'accounts/login.html', {'form': form})
+
+class RegisterView(View):
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            redirect('/')
+        else:
+            form = UserCreationForm()
+            context = {'form': form}
+            return render(request, 'accounts/register.html', context)
+    
+    def post(self, request, *args, **kwargs):
+        form = UserCreationForm(data=request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            form.save()
+            print('Hello world!!')
+            return redirect('/accounts/login')
+        return render(request, 'accounts/register.html', {'form': form})
+
+class LogoutView(View):
+
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            logout(request)
+        return redirect('/accounts/login')
