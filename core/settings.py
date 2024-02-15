@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-(1iw_l#)xvk1zplt_whl5e0h!-k%gwnco&0q6@)1h61i9omfl4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # My Apps
-    'accounts',
+    "accounts",
+    "todo",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates'],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -117,13 +118,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = 'static'
-STATICFILES_DIRS = [BASE_DIR / 'statics']
+STATIC_URL = "static/"
+STATIC_ROOT = "static"
+STATICFILES_DIRS = [BASE_DIR / "statics"]
 
 # Media files
-MEDIA_URL = 'media/'
-MEDIA_ROOT = 'media'
+MEDIA_URL = "media/"
+MEDIA_ROOT = "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
