@@ -9,8 +9,14 @@ from .forms import CustomAuthenticationForm
 
 # Create your views here.
 class LoginView(View):
+    """
+    Login class based view. this view accepts 'get' and 'post' methods.
+    """
 
     def get(self, request, *args, **kwargs):
+        """
+        The 'get' method is implemented in this function.
+        """
         if request.user.is_authenticated:
             return redirect("/")
         else:
@@ -19,6 +25,9 @@ class LoginView(View):
             return render(request, "accounts/login.html", context)
 
     def post(self, request, *args, **kwargs):
+        """
+        The 'post' method is implemented in this function.
+        """
         form = CustomAuthenticationForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get("username")
@@ -36,8 +45,14 @@ class LoginView(View):
 
 
 class RegisterView(View):
+    """
+    Register class based view. this view accepts 'get' and 'post' methods.
+    """
 
     def get(self, request, *args, **kwargs):
+        """
+        The 'get' method is implemented in this function.
+        """
         if request.user.is_authenticated:
             return redirect("/")
         else:
@@ -46,6 +61,9 @@ class RegisterView(View):
             return render(request, "accounts/register.html", context)
 
     def post(self, request, *args, **kwargs):
+        """
+        The 'post' method is implemented in this function.
+        """
         form = UserCreationForm(data=request.POST)
         if form.is_valid():
             form.save()
@@ -54,8 +72,14 @@ class RegisterView(View):
 
 
 class LogoutView(View):
+    """
+    Logout class based view. this view accepts only 'get' method.
+    """
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
+        """
+        The 'get' method is implemented in this function.
+        """
         logout(request)
         return redirect("/accounts/login")
