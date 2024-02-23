@@ -18,6 +18,6 @@ jobs:
     - name: Run containers
       run: docker compose up -d
     - name: Format check
-      run: docker compose exec backend "flake8 ."
+      run: docker compose exec backend sh -c "flake8 ."
     - name: Test
-      run: docker compose exec backend "pytest ."
+      run: docker compose exec backend sh -c "pytest ."
