@@ -19,5 +19,5 @@ jobs:
       run: docker compose up -d
     - name: Format check
       run: docker compose exec backend sh -c "flake8 ."
-    # - name: Test
-    #   run: docker compose exec backend sh -c "pytest ."
+    - name: Test
+      run: docker compose exec backend sh -c "pytest ."
